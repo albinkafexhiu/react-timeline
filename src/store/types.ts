@@ -1,6 +1,6 @@
 import { Timeline, TimelineOptions, TimelineState } from '../types/timeline';
 import { TimelineItem } from '../types/item';
-import { Track, TrackGroup } from '../types/track';
+import { Track } from '../types/track';
 
 export interface TimelineStore {
   // Timeline data

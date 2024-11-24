@@ -14,21 +14,7 @@ export const useZoom = () => {
     setZoom(Math.max(zoom / 1.2, options.minZoom));
   }, [zoom, options.minZoom, setZoom]);
 
-  const handleWheel = useCallback((e: React.WheelEvent) => {
-    // Check if Ctrl key is pressed
-    if (e.ctrlKey || e.metaKey) {
-      // Prevent browser zoom
-      e.preventDefault();
-      e.stopPropagation();
-      
-      // Handle timeline zoom
-      if (e.deltaY < 0) {
-        zoomIn();
-      } else {
-        zoomOut();
-      }
-    }
-  }, [zoomIn, zoomOut]);
+
 
   return {
     zoom,

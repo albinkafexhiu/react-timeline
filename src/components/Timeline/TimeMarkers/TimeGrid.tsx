@@ -1,6 +1,7 @@
 import React from 'react';
 import { calculateGridLines } from '@/utils/grid';
 import { formatTime } from '@/utils/time';
+import { useTimelineStore } from '@/store/timelineStore';
 
 interface TimeGridProps {
   width: number;
@@ -9,6 +10,7 @@ interface TimeGridProps {
 }
 
 export const TimeGrid: React.FC<TimeGridProps> = ({ width, zoom, gridSize = 100 }) => {
+  const currentTime = useTimelineStore(state => state.state.currentTime);
   const gridLines = calculateGridLines(width, zoom, gridSize);
 
   return (
@@ -25,6 +27,14 @@ export const TimeGrid: React.FC<TimeGridProps> = ({ width, zoom, gridSize = 100 
           </span>
         </div>
       ))}
+      
+      {/* Playhead */}
+      <div
+        className="absolute top-0 bottom-0 w-px bg-red-500 z-10"
+        style={{ left: (currentTime / 10) * zoom }}
+      >
+        <div className="w-3 h-3 bg-red-500 transform -translate-x-1/2 rounded-full" />
+      </div>
     </div>
   );
 };
